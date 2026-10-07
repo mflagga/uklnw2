@@ -17,7 +17,7 @@ void rozw(int n, std::ofstream &ufile, std::ofstream &Snfile){
     // wektor b
     int Nint = 20;
     double *x = new double[Nint+1];
-    for (int k=0;k<=Nint;k++) x[k]=-1+k*2/Nint;
+    for (int k=0;k<=Nint;k++) x[k]=-1.0+k*2.0/Nint;
     double *b = new double[n+1];
     for (int i=0;i<=n;i++){
         b[i] = 0.0;

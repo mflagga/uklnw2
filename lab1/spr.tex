@@ -1,0 +1,83 @@
+\documentclass[final,a4paper,onecolumn,10pt,polish]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+\setmonofont{JetBrains Mono}[Scale=MatchLowercase]
+\usepackage{braket}
+\usepackage{babel}
+\usepackage{luavlna}
+\singlechars{polish}{AaIiOoUuWwZz}
+\usepackage{microtype}
+\usepackage{csquotes}
+\DeclareQuoteAlias[guillemets*]{polish}{polish}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{comment}
+% a4 = 210mm x 297mm
+\usepackage[a4paper,textwidth=160mm,textheight=235mm,centering]{geometry}
+\linespread{1.05}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup[figure]{name=Wykres}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[nospace,polish]{varioref}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=red,
+    bookmarksnumbered=true
+}
+\usepackage{siunitx}
+\DeclareSIUnit{\litre}{l}
+\DeclareSIUnit{\arbitrary}{a.u.}
+\DeclareSIUnit{\angstrom}{\AA}
+\sisetup{
+    per-mode=symbol,
+    exponent-product=\times,
+    range-units=repeat,
+    range-open-phrase={od },
+    output-decimal-marker={.}
+}
+\AtBeginDocument{
+    \let\square\mdlgwhtsquare
+    \let\blacksquare\mdlgblksquare
+    \let\varpropto\propto
+}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+%\usepackage[version=4]{mhchem}
+    
+% \usepackage{tikz}
+% \usetikzlibrary{positioning, arrows.meta, calc}
+
+% \usepackage{listings}
+% \lstset{
+%   basicstyle=\ttfamily\small,
+%   breaklines=false,
+%   frame=single
+% }
+
+\title{Metody obliczeniowe dla układów niskowymiarowych 2\\Laboratorium 1\\Sprawozdanie}
+\author{Maciej Flaga}
+\date{
+    Październik 2026
+}
+
+\begin{document}
+ 
+\maketitle
+ 
+% \tableofcontents
+
+\section{Sekcja}
+
+\end{document}

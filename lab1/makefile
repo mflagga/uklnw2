@@ -1,3 +1,21 @@
+ifeq ($(OS),Windows_NT)
+	PC := python
+	RM := del /q
+	RMDIR := rmdir /s /q
+	MV := move
+	DEVNULL := NUL 2>&1
+	VR = @echo nie ma valgrinda na windowsie
+	SLASH = $(strip \)
+else
+	PC := python3
+	RM := $(RM)
+	RMDIR := rm -rf
+	MV := mv
+	DEVNULL := /dev/null
+	VR = valgrind ./$(EXEC)
+	SLASH = /
+endif
+
 .SUFFIXES:
 
 CXX := g++
@@ -8,10 +26,17 @@ OBJS := main.o defn.o rozw.o
 HDRS := decl.hpp
 EXEC := main.out
 DATA := tfile.csv ufile.csv Snfile.csv nfile.csv
+
 SCRIPT := plot.py
 MEDIA := Sn.png u.png u0.png
 
-all: $(MEDIA)
+STDFLAGS := -lualatex -interaction=nonstopmode
+BUILDDIR := .build
+TEXNAME := spr
+TEX = $(TEXNAME).tex
+REPORT := sprawozdanie.pdf
+
+all: $(REPORT)
 
 %.o: %.cpp $(HDRS)
 	$(CXX) $(CFLAGS) -c -o $@ $<
@@ -23,18 +48,24 @@ $(DATA): $(EXEC)
 	./$<
 
 $(MEDIA): $(SCRIPT) $(DATA)
-	python3 $<
+	$(PC) $<
+
+$(REPORT): $(TEX) $(MEDIA)
+	latexmk $(STDFLAGS) -output-directory=$(BUILDDIR) $< > $(DEVNULL)
+	$(MV) $(BUILDDIR)$(SLASH)$(TEXNAME).pdf $@ > $(DEVNULL)
 
 gotowe: $(EXEC)
 	./$<
 
 safe: $(EXEC)
-	valgrind ./$<
+	$(VR)
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(EXEC)
-	rm -f $(DATA)
-# 	rm -f $(MEDIA)
+	$(RM) $(OBJS)
+	$(RM) $(EXEC)
+	$(RM) $(DATA)
+	$(RM) $(MEDIA)
+	$(RMDIR) $(BUILDDIR)
+	$(RM) $(REPORT)
 
 .PHONY: all clean safe gotowe

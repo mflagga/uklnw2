@@ -2,3 +2,5 @@
 *.out
 *.csv
 *.png
+**/.build/
+*.pdf

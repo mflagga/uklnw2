@@ -24,10 +24,20 @@ int main(void){
     Snfile.close();
     nfile.close();
 
-    // obliczenie całki
+    // obliczenie i zapis całki
+    std::ofstream Dnfile("Dnfile.csv");
     double *D = new double[nn-1];
-
-    // zapis do Dnfile
+    for (int n=0;n<12;n+=2){
+        k=n/2;
+        D[k]=0.0;
+        for (int i=0;i<N;i++){
+            D[k] += std::pow(u[k+1][i]-u[k][i],2)*2.0/(N-1);
+        }
+        D[k] = std::pow(D[k],0.5);
+        if (n) Dnfile<<',';
+        Dnfile<<D[k];
+    }
+    Dnfile.close();
 
     // czystki 
     for (int i=0;i<nn;i++) delete [] u[i];

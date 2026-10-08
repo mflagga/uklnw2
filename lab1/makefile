@@ -19,16 +19,16 @@ endif
 .SUFFIXES:
 
 CXX := g++
-CFLAGS := -Wall -Wextra
+CFLAGS := -Wall -Wextra -Wpedantic
 LIBS := -lm -lgsl -lgslcblas
 SRCS := main.cpp defn.cpp rozw.cpp
 OBJS := main.o defn.o rozw.o
 HDRS := decl.hpp
 EXEC := main.out
-DATA := tfile.csv ufile.csv Snfile.csv nfile.csv
+DATA := tfile.csv ufile.csv Snfile.csv nfile.csv Dnfile.csv
 
 SCRIPT := plot.py
-MEDIA := Sn.png u.png u0.png
+MEDIA := Sn.png u.png u0.png Dn.png
 
 STDFLAGS := -lualatex -interaction=nonstopmode
 BUILDDIR := .build

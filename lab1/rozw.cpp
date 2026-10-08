@@ -1,6 +1,6 @@
 #include "decl.hpp"
 
-void rozw(int n, std::ofstream &ufile, std::ofstream &Snfile){
+void rozw(int n, std::ofstream &ufile, std::ofstream &Snfile, int N, double *u){
     // macierz A
     double **A = new double*[n+1];
     for (int i=0;i<=n;i++) A[i] = new double[n+1];
@@ -29,9 +29,7 @@ void rozw(int n, std::ofstream &ufile, std::ofstream &Snfile){
     double *c = new double[n+1];
     linSysSolve(A,c,b,n+1);
     // rozwiazanie na u
-    int N=300;
     double *t = new double[N];
-    double *u = new double[N];
     for (int i=0;i<N;i++){
         t[i] = -1.0+i*2.0/(N-1);
         u[i]=0.0;
@@ -78,5 +76,4 @@ void rozw(int n, std::ofstream &ufile, std::ofstream &Snfile){
     delete [] b;
     delete [] c;
     delete [] t;
-    delete [] u;
 }

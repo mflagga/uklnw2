@@ -14,6 +14,6 @@ double bfun(int i, double x);
 double kwGauss(double a, double b, int i);
 void linSysSolve(double **A, double *x, double *b, int n);
 double Sn(int n, double *c, double *b);
-void rozw(int n, std::ofstream &ufile, std::ofstream &Snfile);
+void rozw(int n, std::ofstream &ufile, std::ofstream &Snfile, int N, double *u);
 
 #endif

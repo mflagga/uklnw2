@@ -4,3 +4,5 @@
 *.png
 **/.build/
 *.pdf
+lab1/tabela.tex
+!**/figures/*.png

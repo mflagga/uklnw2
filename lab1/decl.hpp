@@ -8,6 +8,7 @@
 #include <gsl/gsl_linalg.h>
 #include <fstream>
 #include <string>
+#include <iomanip>
 
 double phi(int i, double x);
 double bfun(int i, double x);

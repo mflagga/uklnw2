@@ -28,7 +28,7 @@ EXEC := main.out
 DATA := tfile.csv ufile.csv Snfile.csv nfile.csv Dnfile.csv
 
 SCRIPT := plot.py
-MEDIA := Sn.png u.png u0.png Dn.png
+MEDIA := Sn.png u.png u0.png Dn.png tabela.tex
 
 STDFLAGS := -lualatex -interaction=nonstopmode
 BUILDDIR := .build

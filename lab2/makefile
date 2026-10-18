@@ -1,7 +1,7 @@
 .SUFFIXES: 
 
 CXX := g++
-CFLAGS :=
+CFLAGS := -Wall -Wextra
 LIBS := -lm -lgsl -lgslcblas
 SRCS := main.cpp defn.cpp eigsolver.cpp rozw.cpp
 HDRS := decl.hpp
@@ -10,7 +10,7 @@ EXEC := main.out
 DATA := pkt1Ek.csv pkt1dE0.csv pkt1dEsum.csv
 
 SCRIPT := plot.py
-MEDIA := dE0.png
+MEDIA := pkt1dE0.png pkt1dEsum.png Ek0.png Ek1.png Ek2.png Ek3.png Ek4.png
 
 all: $(MEDIA)
 
@@ -36,5 +36,6 @@ clean:
 	rm -f $(OBJS)
 	rm -f $(EXEC)
 	rm -f $(DATA)
+	rm -f $(MEDIA)
 
 .PHONY: all clean safe gotowe

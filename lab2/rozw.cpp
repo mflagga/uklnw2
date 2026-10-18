@@ -2,11 +2,11 @@
 
 void rozw(int N, double d, int idx, int idy, std::ofstream &pkt1Ek, std::ofstream &pkt1dE0, std::ofstream &pkt1dEsum){
     // preliczniki
-    double bohr_to_nm=0.05292;
-    double nm_to_bohr=1.0/bohr_to_nm;
+    // double bohr_to_nm=0.05292;
+    // double nm_to_bohr=1.0/bohr_to_nm;
     double hartree_to_meV=27211.6;
     double meV_to_hartree=1.0/hartree_to_meV;
-    double hbar=1.0;
+    // double hbar=1.0;
     double mstar=0.067;
     // parametry
     double omega=10.0*meV_to_hartree;
@@ -17,7 +17,7 @@ void rozw(int N, double d, int idx, int idy, std::ofstream &pkt1Ek, std::ofstrea
     double p=2*alpha;
     // alokacja inicjalizacja
     double *X = new double[N];
-    for (int i=0;i<N;i++) X[i]=d*(i-1.0-(N+1)/2.0);
+    for (int i=0;i<N;i++) X[i]=d*(i-(N-1)/2.0);
     double **S = new double*[N];
     for (int i=0;i<N;i++) S[i] = new double[N];
     for (int i=0;i<N;i++){

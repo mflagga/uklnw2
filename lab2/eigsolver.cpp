@@ -1,6 +1,6 @@
 #include "decl.hpp"
 
-void eigsolve(size_t N, double **H, double **S, double **c, double *E){
+void eigsolve(int N, double **H, double **S, double **c, double *E){
     gsl_eigen_gensymmv_workspace *test = gsl_eigen_gensymmv_alloc(N);
     // kopiowanie macierzy
     gsl_matrix *Hgsl = gsl_matrix_alloc(N,N);

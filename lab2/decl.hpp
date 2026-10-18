@@ -1,0 +1,16 @@
+#ifndef DECL_HPP_
+#define DECL_HPP_
+
+#include <iostream>
+#include <cmath>
+#include <gsl/gsl_matrix.h>
+#include <gsl/gsl_vector.h>
+#include <gsl/gsl_linalg.h>
+#include <gsl/gsl_eigen.h>
+#include <fstream>
+
+double phi(int i, double x, double alpha, double X);
+void eigsolve(size_t N, double **H, double **S, double **c, double *E);
+void rozw(int N, double d, int idx, int idy, std::ofstream &pkt1Ek, std::ofstream &pkt1dE0, std::ofstream &pkt1dEsum);
+
+#endif

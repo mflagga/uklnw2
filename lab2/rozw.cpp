@@ -41,10 +41,20 @@ void rozw(int N, double d, int idN, int idd, std::ofstream &pkt1Ek, std::ofstrea
     double **c = new double*[N];
     for (int i=0;i<N;i++) c[i] = new double[N];
     double *E = new double[N];
-    if (beta>0.24 && beta<0.26) geneigsolve(N,H,S,c,E);
-    // for (int i=0;i<N;i++){
-    //     std::cout<<E[i]*hartree_to_meV<<'\n';
-    // }
+    // sprawdzenie noramlizacji i ortogonalnosci
+    if (beta>0.11){
+        geneigsolve(N,H,S,c,E);
+        double *c0=new double[N];
+        double *c05max=new double[N];
+        for (int i=0;i<N;i++){
+            c0[i] = c[i][0];
+            c05max[i] = c[i][N/2];
+        }
+        std::cout<<"N="<<N<<"; d="<<d*bohr_to_nm<<"; beta="<<beta<<"; <c0|S|c0>="<<bilinf(N,c0,S,c0)<<"; <c0|S|c0.5max>="<<bilinf(N,c0,S,c05max)<<'\n';
+        delete [] c0;
+        delete [] c05max;
+    }
+    // energia
     double Esum{};
     for (int i=0;i<5;i++){
         if (idN || idd || i) pkt1Ek<<',';

@@ -15,5 +15,6 @@ void rozw(int N, double d, int idN, int idd, std::ofstream &pkt1Ek, std::ofstrea
 void eigsolve(int N, double **A, double **v, double *lambda);
 // double max(int n, double *arr);
 // double min(int n, double *arr);
+double bilinf(int n, double *u, double **A, double *v);
 
 #endif

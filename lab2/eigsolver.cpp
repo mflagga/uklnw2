@@ -25,6 +25,14 @@ void geneigsolve(int N, double **H, double **S, double **c, double *E){
             c[i][j] = gsl_matrix_get(cgsl,i,j);
         }
     }
+    // normalizacja
+    for (int k=0;k<N;k++){
+        double *ck = new double[N];
+        for (int i=0;i<N;i++) ck[i]=c[i][k];
+        double nrm = std::sqrt(bilinf(N,ck,S,ck));
+        for (int i=0;i<N;i++) c[i][k] /= nrm;
+        delete [] ck;
+    }
     // czstki
     gsl_vector_free(Egsl);
     gsl_matrix_free(cgsl);

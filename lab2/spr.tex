@@ -1,0 +1,222 @@
+\documentclass[final,a4paper,twocolumn,10pt,polish]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+% \setmainfont{STIX Two Text}
+% \setmathfont{STIX Two Math}
+\setmonofont{JetBrains Mono}[Scale=MatchLowercase]
+\usepackage{braket}
+\usepackage{babel}
+\usepackage{luavlna}
+\singlechars{polish}{AaIiOoUuWwZz}
+\usepackage{microtype}
+\usepackage{csquotes}
+\DeclareQuoteAlias[guillemets*]{polish}{polish}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{comment}
+% a4 = 210mm x 297mm
+\usepackage[a4paper,textwidth=160mm,textheight=235mm,centering]{geometry}
+\linespread{1.05}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup[figure]{name=Wykres}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[nospace,polish]{varioref}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=red,
+    bookmarksnumbered=true
+}
+\usepackage{siunitx}
+\DeclareSIUnit{\litre}{l}
+\DeclareSIUnit{\arbitrary}{a.u.}
+\DeclareSIUnit{\angstrom}{\AA}
+\sisetup{
+    per-mode=symbol,
+    exponent-product=\times,
+    range-units=repeat,
+    range-open-phrase={od },
+    output-decimal-marker={.}
+}
+\AtBeginDocument{
+    \let\square\mdlgwhtsquare
+    \let\blacksquare\mdlgblksquare
+    \let\varpropto\propto
+}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+%\usepackage[version=4]{mhchem}
+    
+% \usepackage{tikz}
+% \usetikzlibrary{positioning, arrows.meta, calc}
+
+% \usepackage{listings}
+% \lstset{
+%   basicstyle=\ttfamily\small,
+%   breaklines=false,
+%   frame=single
+% }
+
+\title{Sprawozdanie\\Lab 2}
+\author{Maciej Flaga}
+\date{
+    Październik 2026
+}
+
+\begin{document}
+ 
+\maketitle
+ 
+% \tableofcontents
+
+\section{Sekcja}
+
+Zdefiniowano macierze zgodnie ze wzorami w treści zadania.
+
+Rozwiązano uogólniony problem własny $\hat{H}\mathbf{c}_k=E_k\hat{S}\mathbf{c}_k$ wykorzystując do tego bibliotekę \texttt{GSL} i jej procedurę \texttt{gsl\_eigen\_gensymmv}.
+Otrzymano w ten sposób $N$ energii własnych oraz $N$ zestawów wektorów własnych będących współczynnikami rozwinięcia funkcji falowych w dobranej bazie gaussów.
+
+Pierwsze 5 poziomów energetycznych w funkcji $d$ i $N$ przedstawiają wykresy od \ref{Ek0} do \ref{Ek4}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Ek0.png}
+    \caption{Pierwszy poziom energetyczny w funkcji $d$ i $N$.}
+    \label{Ek0}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Ek1.png}
+    \caption{Drugi poziom energetyczny w funkcji $d$ i $N$.}
+    \label{Ek1}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Ek2.png}
+    \caption{Trzeci poziom energetyczny w funkcji $d$ i $N$.}
+    \label{Ek2}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Ek3.png}
+    \caption{Czwarty poziom energetyczny w funkcji $d$ i $N$.}
+    \label{Ek3}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Ek4.png}
+    \caption{Piąty poziom energetyczny w funkcji $d$ i $N$.}
+    \label{Ek4}
+\end{figure}
+
+Zbadano również błąd energii podstawowej oraz błąd sumy pięciu pierwszych energii w funkcji $d$ i $N$.
+Wyniki przedstawione na wykresach \ref{dE0} i \ref{dEsum}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{pkt1dE0.png}
+    \caption{Błąd energii podstawowej.}
+    \label{dE0}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{pkt1dEsum.png}
+    \caption{Błąd sumy energii pierwszych pięciu poziomów.}
+    \label{dEsum}
+\end{figure}
+
+Obliczono $\kappa=s_{max}/s_{min}$, gdzie $\mathbf{s}$ jest zbiorem wartości własnych macierzy przekrywania $\hat{S}$, dla kilku wartości $N$, $d$ oraz $\beta$.
+Wyniki przedstawiają wykresy od \ref{kb0} do \ref{kb4}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{kb0.png}
+    \caption{$\kappa(d)$; $\beta=0.1$}
+    \label{kb0}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{kb1.png}
+    \caption{$\kappa(d)$; $\beta=0.2$}
+    \label{kb1}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{kb2.png}
+    \caption{$\kappa(d)$; $\beta=0.3$}
+    \label{kb2}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{kb3.png}
+    \caption{$\kappa(d)$; $\beta=0.4$}
+    \label{kb3}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{kb4.png}
+    \caption{$\kappa(d)$; $\beta=0.5$}
+    \label{kb4}
+\end{figure}
+
+Widzimy, że w większości przypadków $\kappa$ nie zależy od $d$.
+Ma to sens ponieważ rozpisując $\alpha$ i $X_i$ w definicji macierzy $\hat{S}$ dostajemy:
+
+\begin{align*}
+    S_{ij} &= \sqrt{\frac{\pi}{2\alpha}}\exp{\left[ -\frac{\alpha^2}{2\alpha}(X_i-X_j)^2 \right]} = \\
+    &=\sqrt{\frac{\pi}{2\frac{\beta}{d^2}}}\exp{\left[ -\frac{\beta}{2d^2}d^2(i-j)^2 \right]} = \\
+    &=\sqrt{\frac{\pi d^2}{2\beta}}\exp{\left[ -\frac{\beta}{2}(i-j)^2 \right]}
+\end{align*}
+
+Wartość $d$ jest jedynie współczynnikiem skalującym, który skraca się podczas dzielenia $s_{max}$ przez $s_{min}$.
+
+Zbadano zależność $\kappa(\beta)$ co przedstawia wykres \ref{kappa}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{kappa.png}
+    \caption{$\kappa(\beta)$}
+    \label{kappa}
+\end{figure}
+
+Obserwujemy niestabilność numeryczną dla $\beta=0.1$ przy $N=31$.
+
+Zbadano też samo rozwiązanie problemu oscylatora harmonicznego dla $N=31$ oraz $d=\qty{4}{\nano\meter}$.
+Wykres \ref{psi} przedstawia pięć najniższych funkcji falowych na dziedzinie $x\in[-70,70]\ \unit{\nano\meter}$.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{psi.png}
+    \caption{Pięć najniższych stanów oscylatora harmonicznego.}
+    \label{psi}
+\end{figure}
+
+Rozwiązanie wydaje się być zgodne z analitycznymi wielomianami Hermite'a.
+Kolejne rozwiązania charakteryzują się:
+\begin{itemize}
+    \item przemienną parzystością
+    \item inkrementującą liczbą węzłów
+    \item zanikiem na brzegach
+\end{itemize}
+
+Program przy odpaleniu również wypisuje do terminala wartości $\bra{\mathbf{c}_0}\hat{S}\ket{\mathbf{c}_0}$ oraz $\bra{\mathbf{c}_0}\hat{S}\ket{\mathbf{c}_{N/2}}$, które za każdym razem wynoszą lub są blisko odpowiednio $1$ i $0$.
+
+\end{document}

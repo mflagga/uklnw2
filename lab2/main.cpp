@@ -20,7 +20,7 @@ int main(){
         N=11+5*idN;
         for (int idd=0;idd<5;idd++){
             d=(3.0+1.0*idd)*nm_to_bohr;
-            rozw(N,d,idN,idd,pkt1Ek,pkt1dE0,pkt1dEsum,beta,0,nul);
+            rozw(N,d,idN,idd,pkt1Ek,pkt1dE0,pkt1dEsum,beta,0,nul,nul);
         }
     }
     pkt1Ek.close();
@@ -37,12 +37,20 @@ int main(){
             d=(3.0+1.0*idd)*nm_to_bohr;
             for (int idb=0;idb<5;idb++){
                 beta=0.1+(idb*0.1);
-                rozw(N,d,idN,idd,nul,nul,nul,beta,idb,pkt2kappa);
+                rozw(N,d,idN,idd,nul,nul,nul,beta,idb,pkt2kappa,nul);
             }
         }
     }
 
     pkt2kappa.close();
+
+    /* f falowe */
+
+    std::ofstream pkt3ff("pkt3ff.csv");
+
+    rozw(31,4.0*nm_to_bohr,0,0,nul,nul,nul,0.25,0,nul,pkt3ff);
+
+    pkt3ff.close();
 
     // return zero
     return 0;

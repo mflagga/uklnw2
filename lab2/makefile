@@ -7,10 +7,10 @@ SRCS := main.cpp defn.cpp eigsolver.cpp rozw.cpp
 HDRS := decl.hpp
 OBJS := main.o defn.o eigsolver.o rozw.o
 EXEC := main.out
-DATA := pkt1Ek.csv pkt1dE0.csv pkt1dEsum.csv pkt2kappa.csv
+DATA := pkt1Ek.csv pkt1dE0.csv pkt1dEsum.csv pkt2kappa.csv pkt3ff.csv
 
 SCRIPT := plot.py
-MEDIA := pkt1dE0.png pkt1dEsum.png Ek0.png Ek1.png Ek2.png Ek3.png Ek4.png kb0.png kb1.png kb2.png kb3.png kb4.png kappa.png
+MEDIA := pkt1dE0.png pkt1dEsum.png Ek0.png Ek1.png Ek2.png Ek3.png Ek4.png kb0.png kb1.png kb2.png kb3.png kb4.png kappa.png psi.png
 
 all: $(MEDIA)
 

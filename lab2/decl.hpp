@@ -9,9 +9,9 @@
 #include <gsl/gsl_eigen.h>
 #include <fstream>
 
-double phi(int i, double x, double alpha, double *X);
+// double phi(int i, double x, double alpha, double *X);
 void geneigsolve(int N, double **H, double **S, double **c, double *E);
-void rozw(int N, double d, int idN, int idd, std::ofstream &pkt1Ek, std::ofstream &pkt1dE0, std::ofstream &pkt1dEsum, double beta, int idb, std::ofstream &pkt2kappa);
+void rozw(int N, double d, int idN, int idd, std::ofstream &pkt1Ek, std::ofstream &pkt1dE0, std::ofstream &pkt1dEsum, double beta, int idb, std::ofstream &pkt2kappa, std::ofstream &pkt3ff);
 void eigsolve(int N, double **A, double **v, double *lambda);
 // double max(int n, double *arr);
 // double min(int n, double *arr);

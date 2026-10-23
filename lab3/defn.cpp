@@ -1,17 +1,5 @@
 #include "decl.hpp"
 
-// double N1(double xi){
-//     return 0.5*(xi*(xi-1.0));
-// }
-
-// double N2(double xi){
-    //     return 1.0-xi*xi;
-    // }
-    
-    // double N3(double xi){
-        //     return 0.5*(xi*(xi+1.0));
-// }
-
 double N(int a, double xi){
     if (a==1){
         return 0.5*(xi*(xi-1.0));
@@ -31,10 +19,6 @@ int nlg(int e, int a){
 
 double rho(double x){
     return std::exp(-60.0*x*x);
-}
-
-double gfun(int a, double xi,double xl, double xr, double he){
-    return rho(xodxi(xi,xl,xr,he))*N(a,xi);
 }
 
 double xodxi(double xi, double xLe, double xRe, double he){
@@ -64,9 +48,9 @@ double kwGaussF(double xl, double xr, int a, double he){
         0.1012285362903763
     };
     for (int alpha=0; alpha<8; alpha++){
-        S += w[alpha]*gfun(a,0.5*(xl+xr)+0.5*(xr-xl)*xi[alpha],xl,xr,he);
+        S += w[alpha]*rho(xodxi(xi[alpha],xl,xr,he))*N(a,xi[alpha]);
     }
-    return 0.5*(xr-xl)*S;
+    return S;
 }
 
 void LUsolve(double **A, double *x, double *b, int n){
@@ -90,4 +74,12 @@ void LUsolve(double **A, double *x, double *b, int n){
     gsl_vector_free(bgsl);
     gsl_vector_free(xgsl);
     gsl_matrix_free(Agsl);
+}
+
+double G(double t){
+    return t*std::erf(std::sqrt(60)*t)+std::exp(-60*t*t)/(std::sqrt(60*M_PI));
+}
+
+double dokl(double x){
+    return std::sqrt(M_PI)/(2*(std::sqrt(60)))*(G(1.0)-G(std::abs(x)));
 }

@@ -1,6 +1,6 @@
 #include "decl.hpp"
 
-void rozw(int Ne, std::ofstream &Efile, std::ofstream &psifile, std::ofstream &psiprimfile){
+void rozw(int Ne, std::ofstream &Efile, std::ofstream &psifile, std::ofstream &psiprimfile, int Nezapis){
     // preliczniki
     double bohr_to_nm=0.05292;
     double nm_to_bohr=1.0/bohr_to_nm;
@@ -8,7 +8,7 @@ void rozw(int Ne, std::ofstream &Efile, std::ofstream &psifile, std::ofstream &p
     double meV_to_hartree=1.0/hartree_to_meV;
     double omega= 10.0*meV_to_hartree;
     double m=0.067;
-    double xmin=-64.0*nm_to_bohr;
+    double xmin=-80.0*nm_to_bohr;
     double xmax=-xmin;
     double *x = new double[Ne];
     for (int i=0;i<Ne;i++) x[i] = xmin + i*(xmax-xmin)/(Ne);
@@ -64,15 +64,35 @@ void rozw(int Ne, std::ofstream &Efile, std::ofstream &psifile, std::ofstream &p
     double *E = new double[2*Ne+1];
     geneigsolve(2*Ne+1,Hprawd,Sprawd,c,E);
 
-    // zapisanie
+    // zapisanie energii
     for (int i=2;i<8;i++){
         if (i-2) Efile<<',';
         Efile<<E[i]*hartree_to_meV-((i-2)*10+5);
-
     }
     Efile<<'\n';
     psifile<<'\n';
     psiprimfile<<'\n';
+
+    // zapisanie funkcji poza wezlami
+    int Nxi=300;
+    double xi;
+    double psi;
+    if (Ne==Nezapis){
+        for (int e=0;e<Ne;e++){
+            for (int i=0;i<Nxi;i++){
+                xi=-1.0+i*2.0/(Nxi-1);
+                psifile<<xodxi(xi,x[e],x[e]+he,he)*bohr_to_nm;
+                for (int n=2;n<8;n++){
+                    psi=0.0;
+                    for (int a=0;a<3;a++){
+                        psi += c[nlg(e,a)][n]*N(a+1,xi);
+                    }
+                    psifile<<','<<psi;
+                }
+                psifile<<'\n';
+            }
+        }
+    }
 
     // czystki
     delete [] x;

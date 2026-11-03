@@ -9,7 +9,10 @@ OBJS := main.o defn.o eigsolver.o rozw.o
 EXEC := main.out
 DATA := Efile.csv psifile.csv psiprimfile.csv
 
-all: gotowe
+SCRIPT := plot.py
+MEDIA := psi.png psiprim.png
+
+all: $(MEDIA)
 
 %.o: %.cpp $(HDRS)
 	$(CXX) $(CFLAGS) -c -o $@ $<
@@ -19,6 +22,9 @@ $(EXEC): $(OBJS)
 
 $(DATA): $(EXEC)
 	./$<
+
+$(MEDIA): $(SCRIPT) $(DATA)
+	python3 $<
 
 gotowe: $(EXEC)
 	./$<
@@ -30,5 +36,6 @@ clean:
 	rm -f $(OBJS)
 	rm -f $(EXEC)
 	rm -f $(DATA)
+	rm -f $(MEDIA)
 
 .PHONY: all clean safe gotowe

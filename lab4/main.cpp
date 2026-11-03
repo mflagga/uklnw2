@@ -13,7 +13,7 @@ int main(void){
 
     int Nearr[]={6,24,48};
     for (int Ne:Nearr){
-        rozw(Ne,Efile,psifile,psiprimfile);
+        rozw(Ne,Efile,psifile,psiprimfile,48);
     }
     
     Efile.close();
